@@ -1,0 +1,16 @@
+# Ignore compiled class files
+bin/
+*.class
+
+# Ignore temporary files
+*.log
+*.tmp
+
+# Ignore VS Code settings (optional but recommended)
+.vscode/
+
+# Ignore macOS system files (in case using Mac later)
+.DS_Store
+
+# Students data file
+students.txt
