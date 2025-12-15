@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class StudentService {
+
     private List<Student> students;
 
     public StudentService() {
@@ -18,7 +19,27 @@ public class StudentService {
             System.out.println("No students found.");
             return;
         }
-        students.forEach(s -> System.out.println(s.toString()));
+        students.forEach(System.out::println);
+    }
+
+    public void sortByName() {
+        students.sort(Comparator.comparing(Student::getName));
+        FileHandler.save(students);
+        System.out.println("Students sorted by name.");
+    }
+
+    public void searchById(int id) {
+        for (Student s : students) {
+            if (s.getId() == id) {
+                System.out.println("\nStudent Found:");
+                System.out.println("ID: " + s.getId());
+                System.out.println("Name: " + s.getName());
+                System.out.println("Age: " + s.getAge());
+                System.out.println("Course: " + s.getCourse());
+                return;
+            }
+        }
+        System.out.println("Student not found.");
     }
 
     public void updateStudent(int id, String name, int age, String course) {
@@ -57,5 +78,6 @@ public class StudentService {
     public void sortByAge() {
         students.sort(Comparator.comparingInt(Student::getAge));
         viewStudents();
+        FileHandler.save(students);
     }
 }
